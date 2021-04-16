@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
@@ -6,20 +6,23 @@ import AddTask from './components/AddTask';
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: 'dsfd',
-      day: 'feb 2nd at 2:30pm',
-      reminder: true,
-    },
-    {
-      id: 2,
-      text: 'fsdf',
-      day: 'feb 3rd at 1:30pm',
-      reminder: false,
-    }
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTasks();
+      setTasks(tasksFromServer);
+    };
+    getTasks();
+  }, []);
+
+  //Fetch tasks 
+  const fetchTasks = async () => {
+    const res = await fetch('http://localhost:5000/tasks');
+    const data = await res.json();
+
+    return data;
+  };
 
   //Add task
   const addTask = (task) => {

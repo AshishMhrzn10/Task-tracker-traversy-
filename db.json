@@ -7,16 +7,16 @@
       "reminder": true
     },
     {
-      "id": 2,
-      "text": "Eat lunch",
-      "day": "feb 3rd at 1:30pm",
-      "reminder": false
-    },
-    {
       "id": 3,
       "text": "Do your assignment",
       "day": "feb 5th at 12:30pm",
       "reminder": false
+    },
+    {
+      "text": "Eat lunch",
+      "day": "5 pm",
+      "reminder": true,
+      "id": 4
     }
   ]
 }
